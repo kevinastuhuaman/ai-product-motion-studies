@@ -48,4 +48,3 @@ The project uses Astro, TypeScript, Playwright, and Axe. GitHub Actions builds a
 - [Human Control Plane](https://kevinastuhuaman.github.io/human-in-the-loop-patterns/)
 - [Agent Workflow Canvas](https://kevinastuhuaman.github.io/agent-workflow-canvas/)
 - [Evals Control Room](https://kevinastuhuaman.github.io/evals-control-room/)
-

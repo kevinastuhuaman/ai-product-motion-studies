@@ -6,4 +6,3 @@ const formatter = new Intl.DateTimeFormat("en-CA", {
 });
 
 export const buildDate = formatter.format(new Date());
-

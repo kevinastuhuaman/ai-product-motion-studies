@@ -56,4 +56,3 @@ test("has no serious accessibility violations or horizontal overflow", async ({ 
     await page.evaluate(() => document.documentElement.clientWidth),
   );
 });
-

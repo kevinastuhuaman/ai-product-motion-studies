@@ -5,4 +5,3 @@ export type MotionStudy = (typeof motionSpec.studies)[number];
 
 export const studies = motionSpec.studies;
 export { motionSpec };
-

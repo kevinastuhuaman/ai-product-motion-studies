@@ -15,4 +15,3 @@ This repository is a public-safe product design artifact. Use original interface
 ## Quality gate
 
 Run `npm test`, `npm run build`, and `npm run validate:motion` before committing. Verify desktop and mobile pixels with Playwright. Do not merge until the repository's reviewer and CI gates pass.
-

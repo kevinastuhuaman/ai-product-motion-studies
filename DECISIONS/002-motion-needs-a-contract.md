@@ -11,4 +11,3 @@ Publish the studies, states, timing, continuity graph, entry and exit objects, t
 ## Consequence
 
 Implementation and product rationale can be reviewed separately, and automated checks can reject incomplete studies.
-

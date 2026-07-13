@@ -11,4 +11,3 @@ Every transition in this artifact has one dominant intent: transform, sequence, 
 ## Consequence
 
 The sequence may feel quieter than a launch reel, but each state remains useful as a static frame and when reduced motion is enabled.
-
