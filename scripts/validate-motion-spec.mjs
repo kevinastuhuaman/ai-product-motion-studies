@@ -22,7 +22,7 @@ for (const study of spec.studies ?? []) {
   for (const state of study.states ?? []) {
     if (!state.id || stateIds.has(state.id)) errors.push(`${study.id}: invalid or duplicate state id ${state.id}`);
     stateIds.add(state.id);
-    if (!state.label || !state.headline || !state.detail || state.durationMs < 1000) errors.push(`${study.id}/${state.id}: incomplete state`);
+    if (!state.label || !state.headline || !state.detail || !Number.isFinite(state.durationMs) || state.durationMs < 1000) errors.push(`${study.id}/${state.id}: incomplete state`);
   }
 }
 

@@ -38,13 +38,15 @@ test("cross-surface study preserves the shared record", async ({ page }) => {
     await expect(record.getByText("92")).toBeVisible();
   }
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-step-id", "agent");
-  await expect(page.getByText("trackly jobs get --id 2048")).toBeVisible();
+  await expect(page.getByText("orbit records get --id SYN-2048")).toBeVisible();
 });
 
 test("reduced motion pauses playback and keeps every state selectable", async ({ page }) => {
   const toggle = page.getByRole("checkbox", { name: "Reduced motion" });
   await toggle.check();
   await expect(page.locator("[data-motion-lab]")).toHaveClass(/reduced/);
+  await expect(page.getByRole("button", { name: "Play sequence" })).toBeVisible();
+  await page.getByRole("button", { name: "Play sequence" }).click();
   await expect(page.getByRole("button", { name: "Play sequence" })).toBeVisible();
   await page.getByRole("button", { name: "Ready", exact: true }).click();
   await expect(page.getByText("Validated before execution")).toBeVisible();

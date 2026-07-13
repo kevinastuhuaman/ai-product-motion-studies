@@ -26,7 +26,7 @@ const description = "Three original motion studies that explain AI workflow stru
 const llmsUrl = canonical + "llms.txt";
 const motionSpecUrl = canonical + "motion-spec.json";
 const socialImageUrl = canonical + "social-preview.png";
-const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"source\": \"direct\",\n  \"freshness\": \"2h\"\n}";
+const agentPayload = "orbit records get --id SYN-2048\n{\n  \"match\": 92,\n  \"source\": \"direct\",\n  \"freshness\": \"2h\"\n}";
 ---
 
 <!doctype html>
@@ -121,12 +121,12 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
                   <div class="recording-page">
                     <p>Candidate intake</p>
                     <div class="field wide"></div><div class="field"></div><div class="field"></div>
-                    <button type="button" tabindex="-1">Review</button>
+                    <span class="mock-button">Review</span>
                   </div>
                   <div class="recording-cursor" aria-hidden="true"></div>
                 </div>
               </div>
-              <div class="workflow-nodes" aria-label="Structured workflow">
+              <div class="workflow-nodes" aria-label="Structured workflow" aria-hidden="true">
                 <article class="workflow-node node-one"><span>01</span><div><strong>Find record</strong><small>Read · Candidate</small></div><Check size={16} aria-hidden="true" /></article>
                 <i class="connector connector-one" aria-hidden="true"></i>
                 <article class="workflow-node node-two"><span>02</span><div><strong>Fill fields</strong><small>Write · Draft only</small></div><Check size={16} aria-hidden="true" /></article>
@@ -168,7 +168,7 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
               </article>
               <div class="surface web-surface"><Monitor size={22} aria-hidden="true" /><div><span>Web comparison</span><strong>Four roles · evidence side by side</strong><i></i><i></i><i></i></div></div>
               <div class="surface desktop-surface"><Laptop size={22} aria-hidden="true" /><div><span>macOS operating loop</span><strong>Keyboard triage · compact state</strong><kbd>E</kbd><kbd>S</kbd><kbd>D</kbd></div></div>
-              <div class="surface mobile-surface"><Smartphone size={22} aria-hidden="true" /><div><span>Mobile decision</span><strong>Review now · save for later</strong><button type="button" tabindex="-1">Save</button></div></div>
+              <div class="surface mobile-surface"><Smartphone size={22} aria-hidden="true" /><div><span>Mobile decision</span><strong>Review now · save for later</strong><span class="mock-button">Save</span></div></div>
               <div class="surface agent-surface"><Terminal size={22} aria-hidden="true" /><pre><code>{agentPayload}</code></pre></div>
               <div class="surface-rail" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             </section>
@@ -208,7 +208,7 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
     <footer>
       <div><strong>AI Product Motion Studies</strong><span>Original interface · synthetic data · public motion contract</span></div>
       <nav aria-label="Footer links"><a href="./llms.txt">LLM context</a><a href="./motion-spec.json">Motion spec</a><a href="https://portfolio.kevinastuhuaman.com">Portfolio <ArrowUpRight size={14} aria-hidden="true" /></a></nav>
-      <small>Built {buildDate} PST</small>
+      <small>Built {buildDate} PT</small>
     </footer>
 
     <script>
@@ -223,7 +223,7 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
       const reducedInput = lab.querySelector("[data-reduced-motion]");
       let studyIndex = 0;
       let stateIndex = 0;
-      let playing = true;
+      let playing = false;
       let timer: number | undefined;
 
       const setText = (selector: string, value: unknown) => {
@@ -300,6 +300,7 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
           setText("[data-trace-copy]", traceCopy);
         }
         lab.querySelectorAll("[data-timeline] button").forEach((button, index) => button.setAttribute("aria-pressed", String(index === stateIndex)));
+        lab.querySelector(".workflow-nodes")?.setAttribute("aria-hidden", String(study.id !== "capture-to-workflow" || state.id === "capture"));
         const progress = lab.querySelector("[data-progress]");
         if (progress instanceof HTMLElement) {
           progress.style.animation = "none";
@@ -329,7 +330,11 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
       lab.querySelector("[data-reset]")?.addEventListener("click", () => { stateIndex = 0; playing = false; renderState(); });
       lab.querySelector("[data-previous]")?.addEventListener("click", () => { stateIndex = (stateIndex - 1 + studies[studyIndex].states.length) % studies[studyIndex].states.length; playing = false; renderState(); });
       lab.querySelector("[data-next]")?.addEventListener("click", () => { stateIndex = (stateIndex + 1) % studies[studyIndex].states.length; playing = false; renderState(); });
-      playButton?.addEventListener("click", () => { playing = !playing; renderState(); });
+      playButton?.addEventListener("click", () => {
+        if (reducedInput instanceof HTMLInputElement && reducedInput.checked) playing = false;
+        else playing = !playing;
+        renderState();
+      });
       reducedInput?.addEventListener("change", () => {
         lab.classList.toggle("reduced", reducedInput instanceof HTMLInputElement && reducedInput.checked);
         playing = false;

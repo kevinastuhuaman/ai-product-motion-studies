@@ -10,7 +10,7 @@ This repository is a public-safe product design artifact. Use original interface
 - Every study needs manual step controls, a reduced-motion state, and a static frame that still communicates the decision.
 - Keep one attention target per state.
 - Do not add decorative particles, gradients, or floating effects.
-- Keep timing and state definitions in `src/data/studies.ts` as the single source of truth.
+- Keep timing and state definitions in `src/data/motion-spec.json` as the single source of truth. `src/data/studies.ts` is the typed application adapter.
 
 ## Quality gate
 
