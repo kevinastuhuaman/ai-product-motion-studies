@@ -18,8 +18,9 @@ for (const study of spec.studies ?? []) {
   if (!study.transition?.durationMs || !study.transition?.easing) errors.push(`${study.id}: incomplete transition`);
   if (!study.reducedMotion) errors.push(`${study.id}: missing reduced-motion equivalent`);
   if (!Array.isArray(study.states) || study.states.length < 4) errors.push(`${study.id}: needs at least four states`);
+  const states = Array.isArray(study.states) ? study.states : [];
   const stateIds = new Set();
-  for (const state of study.states ?? []) {
+  for (const state of states) {
     if (!state.id || stateIds.has(state.id)) errors.push(`${study.id}: invalid or duplicate state id ${state.id}`);
     stateIds.add(state.id);
     if (!state.label || !state.headline || !state.detail || !Number.isFinite(state.durationMs) || state.durationMs < 1000) errors.push(`${study.id}/${state.id}: incomplete state`);

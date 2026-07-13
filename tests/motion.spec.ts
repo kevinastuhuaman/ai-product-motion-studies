@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("./", { waitUntil: "networkidle" });
+  await page.goto("./");
 });
 
 test("renders three original studies and a valid first state", async ({ page }) => {
