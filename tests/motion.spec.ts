@@ -23,8 +23,10 @@ test("manual states expose structure, review, and recovery", async ({ page }) =>
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-study", "exception-to-recovery");
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-step-id", "review");
   await expect(page.getByText("One field changed after validation")).toBeVisible();
+  await expect(page.locator("[data-run-status]")).toHaveText("Needs review");
   await page.getByRole("button", { name: "Resumed", exact: true }).click();
   await expect(page.getByText("Approval binds to the new state")).toBeVisible();
+  await expect(page.locator("[data-run-status]")).toHaveText("Resumed");
 });
 
 test("cross-surface study preserves the shared record", async ({ page }) => {

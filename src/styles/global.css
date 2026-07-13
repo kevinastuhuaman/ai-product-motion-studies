@@ -130,9 +130,11 @@ h1 { max-width: 920px; margin-bottom: 30px; font-size: clamp(3.6rem,7vw,7rem); }
 .review-actions strong { padding: 8px 10px; color: white; background: var(--blue); }
 .audit-trace { position: absolute; bottom: 8%; left: 5%; display: grid; width: 40%; padding: 12px; grid-template-columns: auto auto 1fr; gap: 12px; opacity: .42; border: 1px solid var(--line); background: white; color: var(--muted); transition-property: opacity,border-color,background; font-size: .65rem; }
 .stage[data-step-id="blocked"] .step-write { border-color: var(--red); background: #fff3f1; transform: translateY(6px); }
+.stage[data-step-id="blocked"] .run-header strong { color: #84271f; background: #ffe0dc; }
 .stage[data-step-id="blocked"] .failure-signal,.stage[data-step-id="review"] .failure-signal { opacity: 1; transform: scale(1); }
 .stage[data-step-id="review"] .review-panel { opacity: 1; transform: none; }
 .stage[data-step-id="review"] .failure-signal { left: 5%; }
+.stage[data-step-id="review"] .run-header strong { color: #513696; background: #ebe4ff; }
 .stage[data-step-id="resumed"] .step-write { border-color: var(--green); background: #effbf4; }
 .stage[data-step-id="resumed"] .audit-trace { opacity: 1; border-color: #5eaa87; background: #e1f5e9; }
 .shared-record { position: absolute; top: 23%; left: 33%; width: 34%; padding: 22px; border: 1px solid; background: white; box-shadow: 0 14px 40px #11120f1f; transition-property: top,left,width,transform; }

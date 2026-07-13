@@ -288,6 +288,17 @@ const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"sourc
         setText("[data-state-detail]", state.detail);
         setText("[data-state-current]", stateIndex + 1);
         setText("[data-state-total]", study.states.length);
+        if (study.id === "exception-to-recovery") {
+          const runStatus = { running: "Running", blocked: "Blocked", review: "Needs review", resumed: "Resumed" }[state.id];
+          const traceCopy = {
+            running: "Run inside approved policy",
+            blocked: "Prepared state invalidated",
+            review: "Escalated to policy owner",
+            resumed: "Fresh approval recorded",
+          }[state.id];
+          setText("[data-run-status]", runStatus);
+          setText("[data-trace-copy]", traceCopy);
+        }
         lab.querySelectorAll("[data-timeline] button").forEach((button, index) => button.setAttribute("aria-pressed", String(index === stateIndex)));
         const progress = lab.querySelector("[data-progress]");
         if (progress instanceof HTMLElement) {
