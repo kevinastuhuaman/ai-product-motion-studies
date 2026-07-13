@@ -1,0 +1,80 @@
+{
+  "version": "2.0",
+  "title": "AI Product Motion Studies",
+  "author": "Kevin Astuhuaman",
+  "evidence": "recommended",
+  "stage": {
+    "width": 1440,
+    "height": 900,
+    "family": "demo-ui-walkthrough"
+  },
+  "studies": [
+    {
+      "id": "capture-to-workflow",
+      "number": "01",
+      "title": "From recording to editable workflow",
+      "thesis": "A recording becomes trustworthy only after the system exposes its structure.",
+      "intent": "transform",
+      "sceneRole": "transform",
+      "composition": "process-or-architecture",
+      "density": 2,
+      "module": "hero-to-system-expansion",
+      "continuity": ["recording-shell", "action-01", "action-02", "action-03"],
+      "entry": ["workflow-connectors", "variable-labels", "validation-state"],
+      "exit": ["recording-cursor"],
+      "states": [
+        { "id": "capture", "label": "Capture", "durationMs": 1800, "headline": "Three actions, one recording", "detail": "The system observes a search, a field entry, and a final review step." },
+        { "id": "structure", "label": "Structure", "durationMs": 1800, "headline": "Intent replaces coordinates", "detail": "Recorded actions become named steps with stable inputs and outputs." },
+        { "id": "inspect", "label": "Inspect", "durationMs": 2400, "headline": "The user edits what matters", "detail": "Variables, permissions, and the final approval boundary become inspectable." },
+        { "id": "ready", "label": "Ready", "durationMs": 2200, "headline": "Validated before execution", "detail": "The workflow can run only after required fields and authority checks pass." }
+      ],
+      "transition": { "effect": "stable-shell-transform", "durationMs": 680, "easing": "cubic-bezier(0.22, 1, 0.36, 1)", "advance": "automatic-or-manual" },
+      "reducedMotion": "Show the same four states as immediate cuts with the state label and causal explanation preserved."
+    },
+    {
+      "id": "exception-to-recovery",
+      "number": "02",
+      "title": "From failure to accountable recovery",
+      "thesis": "A useful failure state explains what stopped, who decides, and how the run resumes.",
+      "intent": "sequence",
+      "sceneRole": "explain",
+      "composition": "stable-shell-chronology",
+      "density": 2,
+      "module": "transient-object-lifecycle",
+      "continuity": ["run-shell", "step-source", "step-validate", "step-write"],
+      "entry": ["failure-signal", "review-panel", "resume-trace"],
+      "exit": ["failure-signal"],
+      "states": [
+        { "id": "running", "label": "Running", "durationMs": 1900, "headline": "The run advances normally", "detail": "Read-only collection and validation complete inside the approved policy." },
+        { "id": "blocked", "label": "Blocked", "durationMs": 2300, "headline": "The write step fails closed", "detail": "A changed record invalidates the prepared action before any mutation occurs." },
+        { "id": "review", "label": "Review", "durationMs": 2700, "headline": "The decision moves to an owner", "detail": "The reviewer sees the diff, the reason for escalation, and the recovery options." },
+        { "id": "resumed", "label": "Resumed", "durationMs": 2300, "headline": "Approval binds to the new state", "detail": "The run resumes from the blocked step and records the decision in the trace." }
+      ],
+      "transition": { "effect": "stable-shell-refocus", "durationMs": 520, "easing": "cubic-bezier(0.4, 0, 0.2, 1)", "advance": "automatic-or-manual" },
+      "reducedMotion": "Replace pulse and travel with immediate semantic state changes, persistent status text, and a complete audit trace."
+    },
+    {
+      "id": "system-to-surfaces",
+      "number": "03",
+      "title": "One product system, interface-native surfaces",
+      "thesis": "Shared product truth should travel across surfaces without forcing the same interaction everywhere.",
+      "intent": "expand",
+      "sceneRole": "prove",
+      "composition": "system-or-grid",
+      "density": 2,
+      "module": "hero-to-system-expansion",
+      "continuity": ["job-record", "match-score", "company", "role"],
+      "entry": ["web-shell", "desktop-shell", "mobile-shell", "cli-shell"],
+      "exit": [],
+      "states": [
+        { "id": "record", "label": "Shared record", "durationMs": 1800, "headline": "One normalized product object", "detail": "Source, role, company, match rationale, and freshness form the shared contract." },
+        { "id": "web", "label": "Web", "durationMs": 1900, "headline": "Web supports comparison", "detail": "A wider surface prioritizes scanning, filtering, and side-by-side evidence." },
+        { "id": "desktop", "label": "macOS", "durationMs": 1900, "headline": "Desktop supports repeated action", "detail": "Keyboard navigation and compact state make the operating loop faster." },
+        { "id": "mobile", "label": "Mobile", "durationMs": 1900, "headline": "Mobile supports triage", "detail": "The same record compresses to the decision needed while away from a desk." },
+        { "id": "agent", "label": "CLI + MCP", "durationMs": 2300, "headline": "Agents receive structured truth", "detail": "The interface becomes a typed response with provenance, not a screenshot of the UI." }
+      ],
+      "transition": { "effect": "continuity-expansion", "durationMs": 760, "easing": "cubic-bezier(0.22, 1, 0.36, 1)", "advance": "automatic-or-manual" },
+      "reducedMotion": "Reveal each surface as a static comparison while preserving the shared record fields and surface-specific interaction decision."
+    }
+  ]
+}
