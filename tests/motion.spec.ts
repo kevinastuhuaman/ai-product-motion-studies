@@ -15,18 +15,28 @@ test("renders three original studies and a valid first state", async ({ page }) 
 });
 
 test("manual states expose structure, review, and recovery", async ({ page }) => {
+  await expect(page.locator(".workflow-nodes")).toHaveAttribute("aria-hidden", "true");
   await page.getByRole("button", { name: "Inspect", exact: true }).click();
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-step-id", "inspect");
   await expect(page.getByText("Review before submit")).toBeVisible();
+  await expect(page.locator(".workflow-nodes")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator(".workflow-inspector")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator(".validation-banner")).toHaveAttribute("aria-hidden", "true");
   await page.getByRole("tab", { name: /From failure to accountable recovery/i }).click();
+  await expect(page.locator(".capture-scene")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator(".recovery-scene")).toHaveAttribute("aria-hidden", "false");
   await page.getByRole("button", { name: "Review", exact: true }).click();
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-study", "exception-to-recovery");
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-step-id", "review");
   await expect(page.getByText("One field changed after validation")).toBeVisible();
   await expect(page.locator("[data-run-status]")).toHaveText("Needs review");
+  await expect(page.locator(".failure-signal")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator(".review-panel")).toHaveAttribute("aria-hidden", "false");
   await page.getByRole("button", { name: "Resumed", exact: true }).click();
   await expect(page.getByText("Approval binds to the new state")).toBeVisible();
   await expect(page.locator("[data-run-status]")).toHaveText("Resumed");
+  await expect(page.locator(".failure-signal")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator(".review-panel")).toHaveAttribute("aria-hidden", "true");
 });
 
 test("cross-surface study preserves the shared record", async ({ page }) => {
@@ -39,6 +49,8 @@ test("cross-surface study preserves the shared record", async ({ page }) => {
   }
   await expect(page.locator("[data-motion-lab]")).toHaveAttribute("data-step-id", "agent");
   await expect(page.getByText("orbit records get --id SYN-2048")).toBeVisible();
+  await expect(page.locator(".agent-surface")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator(".web-surface")).toHaveAttribute("aria-hidden", "true");
 });
 
 test("reduced motion pauses playback and keeps every state selectable", async ({ page }) => {
