@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kevinastuhuaman.github.io/ai-product-motion-studies/sitemap.xml
+

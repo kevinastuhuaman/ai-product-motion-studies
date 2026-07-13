@@ -1,0 +1,338 @@
+---
+import {
+  ArrowUpRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  CircleStop,
+  Braces,
+  Laptop,
+  Monitor,
+  Pause,
+  Play,
+  RotateCcw,
+  GitBranch,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  TriangleAlert,
+} from "@lucide/astro";
+import { buildDate } from "../data/build-date";
+import { studies } from "../data/studies";
+import "../styles/global.css";
+
+const canonical = "https://kevinastuhuaman.github.io/ai-product-motion-studies/";
+const description = "Three original motion studies that explain AI workflow structure, accountable recovery, and cross-surface product continuity.";
+const llmsUrl = canonical + "llms.txt";
+const motionSpecUrl = canonical + "motion-spec.json";
+const socialImageUrl = canonical + "social-preview.png";
+const agentPayload = "trackly jobs get --id 2048\n{\n  \"match\": 92,\n  \"source\": \"direct\",\n  \"freshness\": \"2h\"\n}";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Kevin Astuhuaman" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/plain" href={llmsUrl} title="LLM context" />
+    <link rel="alternate" type="application/json" href={motionSpecUrl} title="Motion specification" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AI Product Motion Studies | Kevin Astuhuaman" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Product Motion Studies | Kevin Astuhuaman" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <title>AI Product Motion Studies | Kevin Astuhuaman</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#motion-lab">Skip to motion lab</a>
+    <header class="site-header">
+      <a class="wordmark" href="https://portfolio.kevinastuhuaman.com">Kevin Astuhuaman</a>
+      <nav aria-label="Project links">
+        <a href="https://github.com/kevinastuhuaman/ai-product-motion-studies"><GitBranch size={16} aria-hidden="true" /> Source</a>
+        <a href="./motion-spec.json"><Braces size={16} aria-hidden="true" /> Motion spec</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">Original product choreography</p>
+          <h1 id="page-title">Motion should explain what changed.</h1>
+          <p class="lede">Three synthetic AI workflows use continuity, refocus, and recovery to make product state understandable. Every sequence has manual states, reduced-motion behavior, and a public motion contract.</p>
+        </div>
+        <ol class="study-index" aria-label="Motion study index">
+          {studies.map((study) => (
+            <li><span>{study.number}</span><strong>{study.title}</strong><small>{study.intent}</small></li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        id="motion-lab"
+        class="motion-lab"
+        data-motion-lab
+        data-spec={JSON.stringify(studies)}
+        data-study={studies[0].id}
+        data-step-id={studies[0].states[0].id}
+        aria-labelledby="lab-title"
+      >
+        <div class="lab-sidebar">
+          <p class="eyebrow">Motion studies</p>
+          <div class="study-tabs" role="tablist" aria-label="Select a motion study">
+            {studies.map((study, index) => (
+              <button type="button" role="tab" data-study-index={index} aria-selected={index === 0 ? "true" : "false"}>
+                <span>{study.number}</span><strong>{study.title}</strong><small>{study.module}</small>
+              </button>
+            ))}
+          </div>
+          <div class="motion-principle">
+            <span>Motion intent</span>
+            <strong data-study-intent>{studies[0].intent}</strong>
+            <p data-study-thesis>{studies[0].thesis}</p>
+          </div>
+        </div>
+
+        <div class="lab-main">
+          <header class="lab-header">
+            <div>
+              <p class="lab-kicker" data-study-number>Study {studies[0].number}</p>
+              <h2 id="lab-title" data-study-title>{studies[0].title}</h2>
+            </div>
+            <label class="reduced-toggle">
+              <input type="checkbox" data-reduced-motion />
+              <span aria-hidden="true"></span>
+              Reduced motion
+            </label>
+          </header>
+
+          <div class="stage" data-stage>
+            <section class="scene capture-scene" data-scene="capture" aria-label="Recording becomes an editable workflow">
+              <div class="recording-shell">
+                <div class="shell-bar"><span></span><span></span><span></span><b>Workflow capture</b><em>REC</em></div>
+                <div class="recording-body">
+                  <div class="recording-page">
+                    <p>Candidate intake</p>
+                    <div class="field wide"></div><div class="field"></div><div class="field"></div>
+                    <button type="button" tabindex="-1">Review</button>
+                  </div>
+                  <div class="recording-cursor" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="workflow-nodes" aria-label="Structured workflow">
+                <article class="workflow-node node-one"><span>01</span><div><strong>Find record</strong><small>Read · Candidate</small></div><Check size={16} aria-hidden="true" /></article>
+                <i class="connector connector-one" aria-hidden="true"></i>
+                <article class="workflow-node node-two"><span>02</span><div><strong>Fill fields</strong><small>Write · Draft only</small></div><Check size={16} aria-hidden="true" /></article>
+                <i class="connector connector-two" aria-hidden="true"></i>
+                <article class="workflow-node node-three"><span>03</span><div><strong>Request review</strong><small>Human approval</small></div><ShieldCheck size={16} aria-hidden="true" /></article>
+              </div>
+              <aside class="workflow-inspector">
+                <span>Step 03 · Policy</span>
+                <strong>Review before submit</strong>
+                <dl><div><dt>Input</dt><dd>Prepared form</dd></div><div><dt>Authority</dt><dd>Draft only</dd></div><div><dt>Approval</dt><dd>Fresh</dd></div></dl>
+              </aside>
+              <div class="validation-banner"><Check size={16} aria-hidden="true" /><span>Required inputs and control policy validated</span></div>
+            </section>
+
+            <section class="scene recovery-scene" data-scene="recovery" aria-label="Failed workflow enters human review and resumes">
+              <div class="run-header"><span>RUN-2048</span><strong data-run-status>Running</strong><small>Account sync</small></div>
+              <div class="run-pipeline">
+                <article class="run-step step-source"><span>01</span><div><strong>Read source</strong><small>12 records</small></div><Check size={16} aria-hidden="true" /></article>
+                <i></i>
+                <article class="run-step step-validate"><span>02</span><div><strong>Validate</strong><small>Policy v4.2</small></div><Check size={16} aria-hidden="true" /></article>
+                <i></i>
+                <article class="run-step step-write"><span>03</span><div><strong>Write change</strong><small>Awaiting state</small></div><CircleStop size={16} aria-hidden="true" /></article>
+              </div>
+              <div class="failure-signal"><TriangleAlert size={20} aria-hidden="true" /><div><strong>Prepared state changed</strong><span>Approval token no longer matches the current record.</span></div></div>
+              <aside class="review-panel">
+                <div class="review-head"><span>Accountable review</span><strong>One field changed after validation</strong></div>
+                <div class="diff-row"><span>Credit limit</span><del>$12,000</del><ins>$18,000</ins></div>
+                <div class="review-actions"><span>Reject</span><strong>Approve current state</strong></div>
+              </aside>
+              <div class="audit-trace"><span>20:14</span><b>Policy gate</b><span data-trace-copy>Run inside approved policy</span></div>
+            </section>
+
+            <section class="scene surfaces-scene" data-scene="surfaces" aria-label="One product record across web, desktop, mobile, and agent surfaces">
+              <article class="shared-record">
+                <span>Normalized job record</span>
+                <strong>Founding Product Manager</strong>
+                <p>Sola · New York · 2h fresh</p>
+                <div><b>92</b><small>Match</small><em>Direct source</em></div>
+              </article>
+              <div class="surface web-surface"><Monitor size={22} aria-hidden="true" /><div><span>Web comparison</span><strong>Four roles · evidence side by side</strong><i></i><i></i><i></i></div></div>
+              <div class="surface desktop-surface"><Laptop size={22} aria-hidden="true" /><div><span>macOS operating loop</span><strong>Keyboard triage · compact state</strong><kbd>E</kbd><kbd>S</kbd><kbd>D</kbd></div></div>
+              <div class="surface mobile-surface"><Smartphone size={22} aria-hidden="true" /><div><span>Mobile decision</span><strong>Review now · save for later</strong><button type="button" tabindex="-1">Save</button></div></div>
+              <div class="surface agent-surface"><Terminal size={22} aria-hidden="true" /><pre><code>{agentPayload}</code></pre></div>
+              <div class="surface-rail" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </section>
+          </div>
+
+          <div class="state-caption" aria-live="polite">
+            <div><span data-state-label>{studies[0].states[0].label}</span><strong data-state-headline>{studies[0].states[0].headline}</strong></div>
+            <p data-state-detail>{studies[0].states[0].detail}</p>
+          </div>
+
+          <div class="timeline" data-timeline aria-label="Study states"></div>
+          <div class="transport">
+            <div class="transport-buttons">
+              <button type="button" class="icon-button" data-reset title="Reset sequence" aria-label="Reset sequence"><RotateCcw size={18} aria-hidden="true" /></button>
+              <button type="button" class="icon-button" data-previous title="Previous state" aria-label="Previous state"><ChevronLeft size={19} aria-hidden="true" /></button>
+              <button type="button" class="icon-button primary" data-play title="Pause sequence" aria-label="Pause sequence">
+                <Play class="play-icon" size={18} aria-hidden="true" /><Pause class="pause-icon" size={18} aria-hidden="true" />
+              </button>
+              <button type="button" class="icon-button" data-next title="Next state" aria-label="Next state"><ChevronRight size={19} aria-hidden="true" /></button>
+            </div>
+            <div class="motion-progress" aria-hidden="true"><span data-progress></span></div>
+            <span class="state-count"><b data-state-current>1</b> / <span data-state-total>{studies[0].states.length}</span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="decision-band" aria-labelledby="decisions-title">
+        <div><p class="eyebrow">Design rationale</p><h2 id="decisions-title">Continuity earns attention. State earns trust.</h2></div>
+        <div class="decision-grid">
+          <article><span>01</span><strong>Preserve the shell</strong><p>When one variable changes, the surrounding product stays still so the user can name the cause.</p></article>
+          <article><span>02</span><strong>Move authority visibly</strong><p>Failure does not end in a red toast. The decision travels to an owner with context and recovery.</p></article>
+          <article><span>03</span><strong>Respect each surface</strong><p>The same product object remains recognizable while interaction density changes across web, native, mobile, and agent interfaces.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>AI Product Motion Studies</strong><span>Original interface · synthetic data · public motion contract</span></div>
+      <nav aria-label="Footer links"><a href="./llms.txt">LLM context</a><a href="./motion-spec.json">Motion spec</a><a href="https://portfolio.kevinastuhuaman.com">Portfolio <ArrowUpRight size={14} aria-hidden="true" /></a></nav>
+      <small>Built {buildDate} PST</small>
+    </footer>
+
+    <script>
+      type ClientState = { id: string; label: string; headline: string; detail: string; durationMs: number };
+      type ClientStudy = { id: string; number: string; title: string; thesis: string; intent: string; transition: { durationMs: number; easing: string }; states: ClientState[] };
+      const lab = document.querySelector("[data-motion-lab]");
+      if (!(lab instanceof HTMLElement)) throw new Error("Motion lab not found");
+      const studies = JSON.parse(lab.dataset.spec ?? "[]") as ClientStudy[];
+      const stage = lab.querySelector("[data-stage]");
+      const timeline = lab.querySelector("[data-timeline]");
+      const playButton = lab.querySelector("[data-play]");
+      const reducedInput = lab.querySelector("[data-reduced-motion]");
+      let studyIndex = 0;
+      let stateIndex = 0;
+      let playing = true;
+      let timer: number | undefined;
+
+      const setText = (selector: string, value: unknown) => {
+        const node = lab.querySelector(selector);
+        if (node) node.textContent = String(value);
+      };
+
+      const stopTimer = () => {
+        if (timer) window.clearTimeout(timer);
+        timer = undefined;
+      };
+
+      const updatePlayButton = () => {
+        if (!(playButton instanceof HTMLButtonElement)) return;
+        playButton.dataset.playing = String(playing);
+        playButton.setAttribute("aria-label", playing ? "Pause sequence" : "Play sequence");
+        playButton.setAttribute("title", playing ? "Pause sequence" : "Play sequence");
+      };
+
+      const schedule = () => {
+        stopTimer();
+        const reduced = reducedInput instanceof HTMLInputElement && reducedInput.checked;
+        if (!playing || reduced) return;
+        const state = studies[studyIndex].states[stateIndex];
+        timer = window.setTimeout(() => {
+          stateIndex = (stateIndex + 1) % studies[studyIndex].states.length;
+          renderState();
+        }, state.durationMs);
+      };
+
+      const buildTimeline = () => {
+        if (!(timeline instanceof HTMLElement)) return;
+        timeline.replaceChildren();
+        studies[studyIndex].states.forEach((state, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = state.label;
+          button.dataset.stateIndex = String(index);
+          button.setAttribute("aria-pressed", String(index === stateIndex));
+          button.addEventListener("click", () => {
+            stateIndex = index;
+            playing = false;
+            renderState();
+          });
+          timeline.append(button);
+        });
+      };
+
+      const renderState = () => {
+        const study = studies[studyIndex];
+        const state = study.states[stateIndex];
+        lab.dataset.study = study.id;
+        lab.dataset.stepId = state.id;
+        if (stage instanceof HTMLElement) {
+          stage.dataset.study = study.id;
+          stage.dataset.stepId = state.id;
+          stage.style.setProperty("--motion-duration", study.transition.durationMs + "ms");
+          stage.style.setProperty("--motion-easing", study.transition.easing);
+        }
+        setText("[data-state-label]", state.label);
+        setText("[data-state-headline]", state.headline);
+        setText("[data-state-detail]", state.detail);
+        setText("[data-state-current]", stateIndex + 1);
+        setText("[data-state-total]", study.states.length);
+        lab.querySelectorAll("[data-timeline] button").forEach((button, index) => button.setAttribute("aria-pressed", String(index === stateIndex)));
+        const progress = lab.querySelector("[data-progress]");
+        if (progress instanceof HTMLElement) {
+          progress.style.animation = "none";
+          progress.offsetHeight;
+          progress.style.animation = playing && !(reducedInput instanceof HTMLInputElement && reducedInput.checked) ? "progress " + state.durationMs + "ms linear forwards" : "none";
+          progress.style.width = playing ? "0" : ((stateIndex + 1) / study.states.length) * 100 + "%";
+        }
+        updatePlayButton();
+        schedule();
+      };
+
+      const selectStudy = (index: number) => {
+        studyIndex = index;
+        stateIndex = 0;
+        playing = !(reducedInput instanceof HTMLInputElement && reducedInput.checked);
+        const study = studies[index];
+        setText("[data-study-number]", "Study " + study.number);
+        setText("[data-study-title]", study.title);
+        setText("[data-study-intent]", study.intent);
+        setText("[data-study-thesis]", study.thesis);
+        lab.querySelectorAll("[data-study-index]").forEach((button, buttonIndex) => button.setAttribute("aria-selected", String(buttonIndex === index)));
+        buildTimeline();
+        renderState();
+      };
+
+      lab.querySelectorAll("[data-study-index]").forEach((button) => button.addEventListener("click", () => selectStudy(Number(button.getAttribute("data-study-index")))));
+      lab.querySelector("[data-reset]")?.addEventListener("click", () => { stateIndex = 0; playing = false; renderState(); });
+      lab.querySelector("[data-previous]")?.addEventListener("click", () => { stateIndex = (stateIndex - 1 + studies[studyIndex].states.length) % studies[studyIndex].states.length; playing = false; renderState(); });
+      lab.querySelector("[data-next]")?.addEventListener("click", () => { stateIndex = (stateIndex + 1) % studies[studyIndex].states.length; playing = false; renderState(); });
+      playButton?.addEventListener("click", () => { playing = !playing; renderState(); });
+      reducedInput?.addEventListener("change", () => {
+        lab.classList.toggle("reduced", reducedInput instanceof HTMLInputElement && reducedInput.checked);
+        playing = false;
+        renderState();
+      });
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced && reducedInput instanceof HTMLInputElement) {
+        reducedInput.checked = true;
+        lab.classList.add("reduced");
+        playing = false;
+      }
+      buildTimeline();
+      renderState();
+    </script>
+  </body>
+</html>
